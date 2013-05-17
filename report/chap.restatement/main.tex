@@ -1,0 +1,31 @@
+\section{Restatement of Project Goals}
+\label{sec:restatementofprojectgoals}
+
+Now that we have covered the basic background material, we enumerate the objectives of
+this project in a clear, concise list:
+\begin{enumerate}
+\item{Implement \ac{GP} regression using the sparse kernels from
+    \cite{melkumyan2009sparse}, and use a distributed memory approach for the conjugate
+    gradient \ac{KSP} solver.}
+\item{Run the \ac{GP} on larger datasets than what is covered
+    in~\cite{melkumyan2009sparse}.  In that work, they only analyzed the computation time
+    for datasets with less than 5,000 points.  We intend to run on datasets with 10,000 - 100,000 points.}
+% \item{Investigate the performance of the key steps (Equations \ref{eqn:learn} and
+%     \ref{eqn:meanCov}) as the number of processors increases.}
+\item{See how the algorithm scales with the number of processors and sparsity of the
+    covariance.  Because the most computationally expensive aspect of using \ac{GP}
+    regression is learning the hyperparameters, we're interested in the following:}
+  \begin{enumerate}
+  \item{Speedup/Efficiency in computing $C_N$ from Equation~\ref{eqn:cov}}
+  \item{Speedup/Efficiency in computing $\frac{\partial}{\partial \Theta_i} \ln p({\bf
+        t}|{\boldsymbol \Theta})$ from Equation~\ref{eqn:learn}}
+  \end{enumerate}
+  To simplify the analysis, we only perform one iteration of gradient descent when
+  reporting these results.  This also allows us to discuss the effect of sparsity of
+  the covariance matrix, which can be manually adjusted by varying $l_i$.
+\end{enumerate}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../report.tex"
+%%% End: 

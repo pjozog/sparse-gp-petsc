@@ -1,0 +1,22 @@
+\begin{abstract}
+  
+  This report analyzes the implementation of a \ac{GP} on a distributed memory cluster
+  using the \ac{SPMD} paradigm.  We verify that this model is well-suited for learning a
+  \ac{GP} for very large regression problems when the covariance function is sparse. To
+  achieve parallelism in \ac{GP} regression, one particularly partitions the training data
+  into disjoint subsets thus forming an approximation to the full regression.  However,
+  this approach is embarrassingly parallel because only one \ac{PE} can be assigned to
+  each cluster, with no intercommunication.  Our approach does not use such partitioning
+  to achieve parallelism, and we are therefore able to achieve more accurate results than
+  the naive approach.  In particular, we use a \ac{KSP} class of iterative solvers coupled
+  with exactly sparse kernels to achieve parallelism. To our knowledge, we are the first
+  to apply this technique to \ac{GP} regression.  We provide the speedup/efficiency
+  results of our implementation as a function of the number of \acp{PE} and the sparsity
+  of the covariance matrix.
+
+\end{abstract}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "report.tex"
+%%% End: 

@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+%% \topmargin -1.5cm        % read Lamport p.163
+%% \oddsidemargin -0.04cm   % read Lamport p.163
+%% \evensidemargin -0.04cm  % same as oddsidemargin but for left-hand pages
+%% \textwidth 16.59cm
+%% \textheight 21.94cm 
+% $ %\pagestyle{empty}       % Uncomment if don't want page numbers
+\parskip 7.2pt           % sets spacing between paragraphs
+%% % \renewcommand{\baselinestretch}{1.5} % Uncomment for 1.5 spacing between lines
+\parindent 0pt		 % sets leading space for paragraphs
+
+\usepackage{mathtools}
+\usepackage{comment}
+% \usepackage{minted}
+\usepackage{fullpage}
+\usepackage{listings} % For source code
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{fixltx2e}
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
+\usepackage{amssymb,amsmath}
+\usepackage{perl_acronyms}
+\usepackage{perl_math}
+\usepackage{perl_SIunits}
+\usepackage{perl_misc}
+\usepackage{cite}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  bookmarks=true,
+  linkcolor=blue,
+}
+
+\title{
+  Gaussian Process Regression Using a Sparse Covariance Function and an Iterative Krylov
+  Subspace Projection Solver
+}
+\date{\today}
+\author{
+  EECS 587 \\
+  Paul Ozog
+}
+
+\begin{document}
+
+% \begin{titlepage}
+  \begin{figure}
+    \begin{center}
+      \includegraphics{wordmark}
+    \end{center}
+  \end{figure}
+  \maketitle
+  \thispagestyle{empty}
+% \end{titlepage}
+
+\input{abstract.tex}
+\acresetall
+
+\input{chap.intro/main.tex}
+\input{chap.gp-overview/main.tex}
+\input{chap.restatement/main.tex}
+\input{chap.implementation/main.tex}
+\input{chap.experiments/main.tex}
+\input{chap.conclusion/main.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,references}
+
+\end{document}

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#!/bin/sh
+#PBS -S /bin/sh
+#PBS -N 587_project_small
+#PBS -A eecs587f12_flux
+#PBS -l qos=flux
+#PBS -l nodes=3:ppn=12,walltime=5:00:00
+#PBS -l pmem=500mb
+#PBS -q flux
+#PBS -M paulozog@umich.edu
+#PBS -m abe
+#PBS -j oe
+#PBS -V
+#
+
+module load cmake && module load gsl  && module load petsc
+
+# hack to take care of petsc arch bug in petscmpiexec
+export PETSC_ARCH=''
+
+SIZE=10000
+LENGTH0=30
+CMD="./sparsegp-main -obs ../../data/x_${SIZE} -labels ../../data/y_${SIZE} -length0 ${LENGTH0}"
+
+echo "I ran on:"
+cat $PBS_NODEFILE
+
+cd /home/paulozog/sparse-gp-petsc/build/bin
+
+# Use mpirun to run
+for np in 36 25 16 9 4 1; do
+    echo "Using $np processors"
+    petscmpiexec -n ${np} ${CMD}
+done

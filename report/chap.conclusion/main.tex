@@ -1,0 +1,33 @@
+\clearpage
+
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+For this project, we have successfully implemented Gaussian Process regression on a
+distributed-memory cluster using \ac{MPI} and \ac{PETSc}.  To our knowledge, no one has
+implemented \ac{GP} using sparse iterative solvers in conjunction with sparse kernel
+functions.  We have shown that for small-sized problems (approximately 10,000 training
+points), there is an interesting dependence of the algorithm's efficiency on the sparsity
+of the covariance matrix.  In particular, for very sparse matrices the communication
+overhead reduces the efficiency, but as the algorithm becomes more dense this is less of
+an issue.  For large problems (approximately 100,000 training points), the algorithm
+appears to be efficient even for very sparse
+matrices.  % However, the total training time for problems of this size leaves
+                       % something to be desired.
+
+Future work for this project may involve using different options and parameters for the
+\ac{KSP} solver.  For instance, the conjugate gradient method is only one of {\bf many}
+types of \ac{KSP} solvers implemented by PETSc.  One could conceivably perform the same
+experiments using each one of the \ac{KSP} solvers and analyze any change in efficiency.
+Furthermore, one could experiment with the dependence on the convergence criteria to the
+efficiency of \ac{GP} regression.  For this project, we used the recommended convergence
+parameters that made the iterative solution nearly identical to the one computed from
+direct factorization.  To make the algorithm faster at the expense of accuracy, one could
+reduce the convergence thresholds and investigate if the results are still reasonably
+accurate.  Comparing this to the well-known accuracy-performance trade-off of naively
+partitioning the training data is an interesting topic that remains to be explored.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../report.tex"
+%%% End: 
